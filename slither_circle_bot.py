@@ -42,13 +42,11 @@ def main():
 
 	retryElement('//*[@id="nick"]').send_keys(varUSER)
 	retryElement('//*[@id="playh"]/div/div/div[3]').click()
-	time.sleep(3)
+	time.sleep(2)
  
 	x, y = pyautogui.size()
 	centerXStr = int(x) / 2
-	centerXStr = str(round(centerXStr)).rjust(4)
 	centerYStr = int(y) / 2
-	centerYStr = str(round(centerYStr)).rjust(4)
 	pyautogui.moveTo(int(centerXStr),int(centerYStr),duration=0.25)
 	positionXStr = round(int(centerXStr) / 2 + int(centerXStr))
 	pyautogui.moveTo(int(positionXStr),int(centerYStr),duration=0.25)
@@ -57,10 +55,9 @@ def main():
 	g = 0
 
 	for g in range(300):
-		x = math.cos(g) * radio
-		x = int(centerXStr) - x 
-		y = math.sin(g) * radio
-		y = int(centerYStr) - y
+		x = int(math.cos(g) * radio + int(centerXStr))
+		y = int(math.sin(g) * radio + int(centerYStr))
+		g += 0.1
 		pyautogui.moveTo(int(x),int(y),duration=0.16)
 
 	pyautogui.moveTo(int(centerXStr),int(centerYStr))
